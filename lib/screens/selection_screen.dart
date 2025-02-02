@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart'; // Untuk format tanggal otomatis
+
 import 'admin_screen.dart';
 import 'member_screen.dart';
 
@@ -7,17 +10,42 @@ class SelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Mengambil tanggal saat ini
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat.yMMMMd().format(now); // Format otomatis sesuai lokal
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context); // Kembali ke halaman sebelumnya
-          },
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.lightBlue[100], // Sama dengan background halaman
+            border: const Border(
+               // Garis bawah opsional
+            ),
+          ),
+          child: AppBar(
+            backgroundColor: Colors.transparent, // Transparan agar mengikuti warna container
+            elevation: 0, // Hilangkan shadow
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title: Text(
+              formattedDate, // Tanggal otomatis
+              style: GoogleFonts.pacifico(
+                color: Colors.black,
+                fontWeight: FontWeight.w200,
+                fontSize: 16,
+              ),
+            ),
+            centerTitle: true,
+          ),
         ),
       ),
-      backgroundColor: Colors.lightBlue[100],
+      backgroundColor: Colors.lightBlue[100], // Background halaman
       body: Center(
         child: Container(
           width: 300,
@@ -51,12 +79,12 @@ class SelectionScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: const Text(
-                  'ADMIN',
-                  style: TextStyle(
+                child: Text(
+                  'Admin',
+                  style: GoogleFonts.quicksand(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
                     fontSize: 16,
+                    fontWeight: FontWeight.w600, // Agak tebal supaya lebih jelas
                   ),
                 ),
               ),
@@ -76,12 +104,12 @@ class SelectionScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: const Text(
-                  'MEMBER',
-                  style: TextStyle(
+                child: Text(
+                  'Member',
+                  style: GoogleFonts.quicksand(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
                     fontSize: 16,
+                    fontWeight: FontWeight.w600, // Agak tebal supaya lebih jelas
                   ),
                 ),
               ),
@@ -91,5 +119,4 @@ class SelectionScreen extends StatelessWidget {
       ),
     );
   }
-
-  }
+}
