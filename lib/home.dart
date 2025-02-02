@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled22/screens/login_screen.dart';
 import 'screens/register_screen.dart';
 
@@ -61,9 +62,13 @@ class HomePage extends StatelessWidget {
                 ),
                 minimumSize: const Size(250, 50), // Ukuran tombol
               ),
-              child: const Text(
+              child: Text(
                 'Register',
-                style: TextStyle(color: Colors.white, fontSize: 16), // Gaya teks
+                style: GoogleFonts.quicksand(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600, // Agak tebal supaya lebih jelas
+                ),
               ),
             ),
 
@@ -83,9 +88,13 @@ class HomePage extends StatelessWidget {
                 ),
                 minimumSize: const Size(250, 50), // Ukuran tombol
               ),
-              child: const Text(
+              child: Text(
                 'Login',
-                style: TextStyle(color: Colors.white, fontSize: 16), // Gaya teks
+                style: GoogleFonts.quicksand(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600, // Agak tebal supaya lebih jelas
+                ),
               ),
             ),
           ],
