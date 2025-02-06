@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DiskusiRoomScreen extends StatefulWidget {
   final String selectedDay;
@@ -26,8 +27,9 @@ class _DiskusiRoomScreenState extends State<DiskusiRoomScreen> {
 
   void _connectWebSocket() {
     try {
-      // Ganti IP sesuai dengan server WebSocket Anda
-      _channel = WebSocketChannel.connect(Uri.parse('ws://10.128.79.146:8080'));
+
+      _channel = WebSocketChannel.connect(Uri.parse('ws://localhost:8001'));
+
 
       _channel.stream.listen(
             (message) {
@@ -46,7 +48,7 @@ class _DiskusiRoomScreenState extends State<DiskusiRoomScreen> {
         },
         onDone: () {
           print('WebSocket terputus');
-          // Opsional: Implementasi reconnect di sini
+
         },
       );
     } catch (e) {
@@ -80,7 +82,7 @@ class _DiskusiRoomScreenState extends State<DiskusiRoomScreen> {
     super.dispose();
   }
 
-  // Sisanya tetap sama seperti kode asli
+
   void _toggleEmojiKeyboard() {
     setState(() {
       _isEmojiVisible = !_isEmojiVisible;
@@ -103,7 +105,7 @@ class _DiskusiRoomScreenState extends State<DiskusiRoomScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Build method tetap sama seperti kode asli
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -112,9 +114,13 @@ class _DiskusiRoomScreenState extends State<DiskusiRoomScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
+        title: Text(
           'Ruang Diskusi',
-          style: TextStyle(color: Colors.black, fontSize: 19, fontWeight: FontWeight.bold),
+          style: GoogleFonts.quicksand(
+            color: Colors.black,
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
