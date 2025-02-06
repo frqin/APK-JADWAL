@@ -1,8 +1,8 @@
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 8001 });
 
 // Log saat server mulai
-console.log('Server WebSocket sedang berjalan di port 8080');
+console.log('Server WebSocket sedang berjalan di port 8001');
 
 // Hitung jumlah klien yang terhubung
 let connectedClients = 0;
@@ -25,10 +25,11 @@ wss.on('connection', (ws) => {
 
             // Broadcast pesan ke semua klien
             wss.clients.forEach((client) => {
-                if (client !== ws && client.readyState === WebSocket.OPEN) {
+                if (client.readyState === WebSocket.OPEN) {
                     client.send(messageString);
                 }
             });
+
         } catch (error) {
             console.error('Error memproses pesan:', error);
         }
